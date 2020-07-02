@@ -13,7 +13,7 @@ sbit LCD_D4_Direction at TRISD4_bit;
 sbit LCD_D5_Direction at TRISD5_bit;
 sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
-#line 38 "C:/Users/João/Documents/Programação/PIC/alternador de sinais/choose_signal.c"
+#line 36 "C:/Users/João/Documents/Programação/PIC/alternador de sinais/choose_signal.c"
 bit limpa_lcd,
  flagb1,
  flagb2;
@@ -94,13 +94,6 @@ void interrupt()
  teste_button();
 
  }
-
-}
-
-
-
-void interrupt_low()
-{
 
 }
 

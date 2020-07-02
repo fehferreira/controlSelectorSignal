@@ -1,11 +1,11 @@
 0	1	mikroCPIC1618.exe -MSF -DBG -pP18F4550 -DL -O11111114 -fo20 -N"C:\Users\João\Documents\Programação\PIC\alternador de sinais\choose_signal.mcppi" -SP"C:\Users\João\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\João\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\João\Documents\Programação\PIC\alternador de sinais\" -IP"C:\Users\João\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -IP"C:\Users\João\Documents\Programação\PIC\alternador de sinais\" "choose_signal.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
 hint: 0	1139	Available RAM: 2027 [bytes], Available ROM: 32768 [bytes]	 
 diagnostics: 0	122	Compilation Started	choose_signal.c
-diagnostics: 200	123	Compiled Successfully	choose_signal.c
-diagnostics: 0	127	All files Compiled in 94 ms	 
+diagnostics: 191	123	Compiled Successfully	choose_signal.c
+diagnostics: 0	127	All files Compiled in 79 ms	 
 hint: 0	1144	Used RAM (bytes): 29 (1%)  Free RAM (bytes): 1998 (99%)	Used RAM (bytes): 29 (1%)  Free RAM (bytes): 1998 (99%)
-hint: 0	1144	Used ROM (bytes): 1366 (4%)  Free ROM (bytes): 31402 (96%)	Used ROM (bytes): 1366 (4%)  Free ROM (bytes): 31402 (96%)
+hint: 0	1144	Used ROM (bytes): 1320 (4%)  Free ROM (bytes): 31448 (96%)	Used ROM (bytes): 1320 (4%)  Free ROM (bytes): 31448 (96%)
 diagnostics: 0	125	Project Linked Successfully	choose_signal.mcppi
 diagnostics: 0	128	Linked in 62 ms	 
-diagnostics: 0	129	Project 'choose_signal.mcppi' completed: 187 ms	 
-diagnostics: 0	103	Finished successfully: 02 jul 2020, 13:55:50	choose_signal.mcppi
+diagnostics: 0	129	Project 'choose_signal.mcppi' completed: 172 ms	 
+diagnostics: 0	103	Finished successfully: 02 jul 2020, 14:38:33	choose_signal.mcppi

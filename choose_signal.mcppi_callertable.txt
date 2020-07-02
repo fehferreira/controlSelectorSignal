@@ -36,6 +36,5 @@ main
 					Delay_1us
 					Delay_5500us
 					Delay_50us
-interrupt_low
 interrupt
 	teste_button

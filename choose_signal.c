@@ -28,8 +28,6 @@ sbit LCD_D7_Direction at TRISD7_bit;
 #define out_signal     RD0_bit
 #define selector       RB0_bit
 #define reset_selector RB1_bit
-#define inib_selector  RB2_bit
-#define carry_out      RB3_bit
 
 
 //---------------------------------------------------------------------------
@@ -104,7 +102,7 @@ void main()
 
 void interrupt()
 {
-  //---------- TRATAMENTO DE INTERRUOPÇÃO DO TIMER0 (TESTE DO BOTAO)----------
+  //---------- TRATAMENTO DE INTERRUPÇÃO DO TIMER0 (TESTE DO BOTAO)----------
   if(TMR0IF_bit)
   {
     TMR0IF_bit = 0x00;                       //Limpa a flag de interrupção
@@ -115,13 +113,6 @@ void interrupt()
     teste_button();
     
   }
-
-}
-
-//----------------------------------------------------------------------------
-
-void interrupt_low()
-{
 
 }
 
@@ -199,7 +190,4 @@ void impressao()
   
 }
 
-
 //----------------------------------------------------------------------------
-
-

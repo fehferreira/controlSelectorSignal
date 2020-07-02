@@ -601,7 +601,6 @@ intedg1_bit
 intedg2
 intedg2_bit
 interrupt
-interrupt_low
 intsrc
 intsrc_bit
 inttohex
