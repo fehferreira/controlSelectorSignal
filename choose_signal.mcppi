@@ -43,7 +43,9 @@ Count=0
 [Useses]
 File0=Lcd
 File1=Lcd_Constants
-Count=2
+File2=Conversions
+File3=C_String
+Count=4
 [EXPANDED_NODES]
 0=choose_signal.mcppi
 Count=1

@@ -14,7 +14,12 @@ sbit LCD_D5_Direction at TRISD5_bit;
 sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
 #line 38 "C:/Users/João/Documents/Programação/PIC/alternador de sinais/choose_signal.c"
-bit limpa_lcd;
+bit limpa_lcd,
+ flagb1,
+ flagb2;
+
+char pos_selector = 0x01,
+ txt[7];
 
 
 
@@ -22,6 +27,8 @@ bit limpa_lcd;
 void interrupt();
 void interrupt_low();
 void limpaLcd();
+void teste_button();
+void impressao();
 
 
 
@@ -36,6 +43,14 @@ void main()
  TRISD = 0x00;
  TRISB = 0xF8;
 
+ ADCON0 = 0x00;
+ ADCON1 = 0x0F;
+
+
+
+ flagb1 = 0x00;
+ flagb2 = 0x00;
+ limpa_lcd = 0x01;
 
 
 
@@ -53,17 +68,12 @@ void main()
 
 
  Lcd_Init();
- Lcd_Cmd(_LCD_CLEAR);
  Lcd_Cmd(_LCD_CURSOR_OFF);
-
- Lcd_Out_Cp("JC MODULOS");
-
-
-
 
  while(1)
  {
-
+ limpaLcd();
+ impressao();
  }
 
 }
@@ -80,6 +90,8 @@ void interrupt()
  TMR0H = 0xB1;
  TMR0L = 0xE0;
   RD0_bit  = ~ RD0_bit ;
+
+ teste_button();
 
  }
 
@@ -101,4 +113,67 @@ void limpaLcd()
  Lcd_Cmd(_LCD_CLEAR);
  limpa_lcd = 0x00;
  }
+}
+
+
+
+void teste_button()
+{
+ if( RB6_bit  && !flagb1) flagb1 = 0x01;
+ if( RB7_bit  && !flagb2) flagb2 = 0x01;
+
+ if(! RB6_bit  && flagb1)
+ {
+ limpa_lcd = 0x01;
+ flagb1 = 0x00;
+  RB0_bit  = 0x01;
+ pos_selector++;
+ if(pos_selector >= 11) pos_selector = 1;
+ }
+
+ if(! RB7_bit  && flagb2)
+ {
+ char i;
+
+ limpa_lcd = 0x01;
+ flagb2 = 0x00;
+  RB0_bit  = 0x01;
+ pos_selector--;
+ if(pos_selector <= 0) pos_selector = 10;
+  RB1_bit  = 0x01;
+  RB1_bit  = 0x00;
+ for(i = 0 ; i != pos_selector ; i++)
+ {
+  RB0_bit  = 0x01;
+  RB0_bit  = 0x00;
+ }
+ }
+
+  RB0_bit  = 0x00;
+
+}
+
+
+
+void impressao()
+{
+ Lcd_Chr(1,1,'J');
+ Lcd_Chr_Cp('C');
+ Lcd_Chr_Cp(' ');
+ Lcd_Chr_Cp('M');
+ Lcd_Chr_Cp('O');
+ Lcd_Chr_Cp('D');
+ Lcd_Chr_Cp('U');
+ Lcd_Chr_Cp('L');
+ Lcd_Chr_Cp('O');
+ Lcd_Chr_Cp('S');
+
+ Lcd_Chr(2,1,'P');
+ Lcd_Chr_Cp('O');
+ Lcd_Chr_Cp('S');
+ Lcd_Chr_Cp(':');
+
+ IntToStr(pos_selector,txt);
+ Lcd_Out(2,6,txt);
+
 }

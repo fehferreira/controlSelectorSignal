@@ -124,6 +124,8 @@ b7
 banked
 baudcon
 baudctl
+bcd2dec
+bcd2dec16
 bclie
 bclie_bit
 bclif
@@ -150,6 +152,9 @@ btsee_bit
 btsef
 btsef_bit
 byte2double
+bytetohex
+bytetostr
+bytetostrwithzeros
 c
 c_bit
 c1inv
@@ -294,6 +299,8 @@ dc2b0
 dc2b0_bit
 dc2b1
 dc2b1_bit
+dec2bcd
+dec2bcd16
 delay_100ms
 delay_10ms
 delay_10us
@@ -451,6 +458,10 @@ fast
 ferr
 ferr_bit
 fixsign32
+flagb1
+flagb2
+floattostr
+floattostr_fixlen
 flts
 flts_bit
 free
@@ -537,6 +548,7 @@ idleif
 idleif_bit
 idlen
 idlen_bit
+impressao
 indf0
 indf1
 indf2
@@ -592,6 +604,9 @@ interrupt
 interrupt_low
 intsrc
 intsrc_bit
+inttohex
+inttostr
+inttostrwithzeros
 iofs
 iofs_bit
 ipen
@@ -696,8 +711,15 @@ lcd_rs_direction
 limpa_lcd
 limpalcd
 longint2double
+longinttohex
+longinttostrwithzeros
 longjmp
+longtostr
 longword2double
+longwordtohex
+longwordtostr
+longwordtostrwithzeros
+ltrim
 lvdcon
 lvden
 lvden_bit
@@ -726,6 +748,11 @@ lvv2_bit
 lvv3
 lvv3_bit
 main
+memchr
+memcmp
+memcpy
+memmove
+memset
 mul_16x16_s
 mul_16x16_u
 mul_32x32_fp
@@ -861,6 +888,7 @@ portb
 portc
 portd
 porte
+pos_selector
 postdec0
 postdec1
 postdec2
@@ -1031,6 +1059,7 @@ ri
 ri_bit
 rsen
 rsen_bit
+rtrim
 rx_
 rx__bit
 rx9
@@ -1061,6 +1090,9 @@ setfov32
 setfun32
 setiov3224
 setjmp
+shorttohex
+shorttostr
+shorttostrwithzeros
 smp
 smp_bit
 sofie
@@ -1150,6 +1182,20 @@ stkptr4
 stkptr4_bit
 stkunf
 stkunf_bit
+strcat
+strchr
+strcmp
+strcpy
+strcspn
+strlen
+strncat
+strncmp
+strncpy
+strpbrk
+strrchr
+strspn
+strstr
+strtok
 sub_32x32_fp
 suspnd
 suspnd_bit
@@ -1229,6 +1275,7 @@ tblptr
 tblptrh
 tblptrl
 tblptru
+teste_button
 tmr0h
 tmr0ie
 tmr0ie_bit
@@ -1386,6 +1433,7 @@ txip
 txip_bit
 txreg
 txsta
+txt
 ua
 ua_bit
 uaddr
@@ -1455,6 +1503,9 @@ wcol
 wcol_bit
 wdtcon
 word2double
+wordtohex
+wordtostr
+wordtostrwithzeros
 wr
 wr_bit
 wreg

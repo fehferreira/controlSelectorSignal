@@ -27,15 +27,20 @@ sbit LCD_D7_Direction at TRISD7_bit;
 #define b2             RB7_bit
 #define out_signal     RD0_bit
 #define selector       RB0_bit
-#define reset-selector RB1_bit
-#define inib-selector  RB2_bit
-#define carry-out      RB3_bit
+#define reset_selector RB1_bit
+#define inib_selector  RB2_bit
+#define carry_out      RB3_bit
 
 
 //---------------------------------------------------------------------------
 // --- CRIAÇAO DE VARIAVEIS GLOBAIS
 
-bit limpa_lcd;
+bit limpa_lcd,
+    flagb1,
+    flagb2;
+    
+char pos_selector = 0x01,
+     txt[7];
 
 //-----------------------------------------------------------------------------
 // --- CRIANDO PROTÓTIPOS DAS FUNÇOES
@@ -43,6 +48,8 @@ bit limpa_lcd;
 void interrupt();
 void interrupt_low();
 void limpaLcd();
+void teste_button();
+void impressao();
 
 //---------------------------------------------------------------------------
 // --- CÓDIGO PRINCIPAL
@@ -57,6 +64,14 @@ void main()
  TRISD = 0x00;                               //Configura PORTD como saida
  TRISB = 0xF8;                               //Configura RB0:RB2 como saida, restante entrada
  
+ ADCON0 = 0x00;                              //Conversor A-D Desabilitado
+ ADCON1 = 0x0F;                              //Configurando saída como Digitais
+ 
+ //------- Limpando as variaveis para inicio do programa ------
+ 
+ flagb1 = 0x00;
+ flagb2 = 0x00;
+ limpa_lcd = 0x01;
  
  //-------------- CONFIGURANDO TIMER0 ( TESTE DE BOTÃO ) --------------------
  
@@ -74,17 +89,12 @@ void main()
  //-------------- CONFIGURANDO LCD (BIBLIOTECA MIKROC) ----------------------
  
  Lcd_Init();                                 //Inicializa o LCD
- Lcd_Cmd(_LCD_CLEAR);                        //Limpa o LCD
  Lcd_Cmd(_LCD_CURSOR_OFF);                   //Desabilita o curso do LCD
- 
- Lcd_Out_Cp("JC MODULOS");
-
-
-
 
   while(1)
    {
-
+     limpaLcd();
+     impressao();
    }
 
 }//FINAL MAIN
@@ -101,6 +111,8 @@ void interrupt()
     TMR0H = 0xB1;                            //Reiniciando os contadores (45536)
     TMR0L = 0xE0;                            //Reiniciando os contadores (45536)
     out_signal = ~out_signal;
+    
+    teste_button();
     
   }
 
@@ -123,6 +135,70 @@ void limpaLcd()
     limpa_lcd = 0x00;
   }
 }
+
+//----------------------------------------------------------------------------
+
+void teste_button()
+{
+  if(b1 && !flagb1)  flagb1 = 0x01;
+  if(b2 && !flagb2)  flagb2 = 0x01;
+  
+  if(!b1 && flagb1)
+  {
+    limpa_lcd = 0x01;
+    flagb1 = 0x00;
+    selector = 0x01;
+    pos_selector++;
+    if(pos_selector >= 11) pos_selector = 1;
+  }
+  
+  if(!b2 && flagb2)
+  {
+    char i;
+    
+    limpa_lcd = 0x01;
+    flagb2 = 0x00;
+    selector = 0x01;
+    pos_selector--;
+    if(pos_selector <= 0) pos_selector = 10;
+    reset_selector = 0x01;
+    reset_selector = 0x00;
+    for(i = 0 ; i != pos_selector ; i++)
+    {
+      selector = 0x01;
+      selector = 0x00;
+    }
+  }
+  
+  selector = 0x00;
+
+}
+
+//----------------------------------------------------------------------------
+
+void impressao()
+{
+  Lcd_Chr(1,1,'J');
+  Lcd_Chr_Cp('C');
+  Lcd_Chr_Cp(' ');
+  Lcd_Chr_Cp('M');
+  Lcd_Chr_Cp('O');
+  Lcd_Chr_Cp('D');
+  Lcd_Chr_Cp('U');
+  Lcd_Chr_Cp('L');
+  Lcd_Chr_Cp('O');
+  Lcd_Chr_Cp('S');
+  
+  Lcd_Chr(2,1,'P');
+  Lcd_Chr_Cp('O');
+  Lcd_Chr_Cp('S');
+  Lcd_Chr_Cp(':');
+  
+  IntToStr(pos_selector,txt);
+  Lcd_Out(2,6,txt);
+  
+}
+
 
 //----------------------------------------------------------------------------
 
