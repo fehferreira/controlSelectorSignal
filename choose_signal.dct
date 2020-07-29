@@ -601,6 +601,7 @@ intedg1_bit
 intedg2
 intedg2_bit
 interrupt
+interrupt_tmr0
 intsrc
 intsrc_bit
 inttohex
@@ -1274,7 +1275,7 @@ tblptr
 tblptrh
 tblptrl
 tblptru
-teste_button
+test_button
 tmr0h
 tmr0ie
 tmr0ie_bit
@@ -1432,7 +1433,6 @@ txip
 txip_bit
 txreg
 txsta
-txt
 ua
 ua_bit
 uaddr

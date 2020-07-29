@@ -1,22 +1,23 @@
-#line 1 "C:/Users/Felipe-Oficina/Documents/Programação/PIC/alternador de sinais/choose_signal.c"
+#line 1 "C:/Users/Felipe-Oficina/Documents/Programação/PIC/alternador de sinais/choose_main.c"
 #line 1 "c:/users/felipe-oficina/documents/programação/pic/alternador de sinais/choose_header.h"
 #line 21 "c:/users/felipe-oficina/documents/programação/pic/alternador de sinais/choose_header.h"
-void impressao(char pos_selector);
+void impressao();
 void limpaLcd();
 
 
 
-void test_button(char pos_selector);
+void test_button();
 
 
 
-void interrupt_tmr0(char pos_selector);
+void interrupt_tmr0();
 
 
 
 
 extern bit limpa_lcd;
-#line 15 "C:/Users/Felipe-Oficina/Documents/Programação/PIC/alternador de sinais/choose_signal.c"
+extern char pos_selector;
+#line 15 "C:/Users/Felipe-Oficina/Documents/Programação/PIC/alternador de sinais/choose_main.c"
 sbit LCD_RS at RD2_bit;
 sbit LCD_EN at RD3_bit;
 sbit LCD_D4 at RD4_bit;
@@ -34,7 +35,7 @@ sbit LCD_D7_Direction at TRISD7_bit;
 
 
 
-char pos_selector;
+char pos_selector = 1;
 
 
 
@@ -53,6 +54,8 @@ void main()
  ADCON1 = 0x0F;
 
 
+
+ limpa_lcd = 1;
 
  T0CON = 0b10001000;
 
@@ -73,7 +76,7 @@ void main()
  while(1)
  {
  limpaLcd();
- impressao(pos_selector);
+ impressao();
  }
 
 }
@@ -83,5 +86,5 @@ void main()
 
 void interrupt()
 {
- interrupt_tmr0(pos_selector);
+ interrupt_tmr0();
 }

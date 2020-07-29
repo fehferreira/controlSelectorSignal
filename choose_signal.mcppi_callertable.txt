@@ -37,4 +37,5 @@ main
 					Delay_5500us
 					Delay_50us
 interrupt
-	teste_button
+	interrupt_tmr0
+		test_button

@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=choose_signal.c
+Value=choose_main.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -16,16 +16,23 @@ Value=0
 [EEPROM_DEFINITION]
 Value=
 [FILES]
-File0=choose_signal.c
-Count=1
+File0=choose_main.c
+File1=choose_view.c
+File2=choose_controller.c
+File3=choose_tmr0.c
+Count=4
 [BINARIES]
 Count=0
 [IMAGES]
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=choose_signal.c
-Count=1
+File0=choose_header.h
+File1=choose_view.c
+File2=choose_controller.c
+File3=choose_tmr0.c
+File4=choose_main.c
+Count=5
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -37,7 +44,8 @@ Count=0
 [HEADER_PATH]
 Count=0
 [HEADERS]
-Count=0
+File0=choose_header.h
+Count=1
 [PLDS]
 Count=0
 [Useses]
@@ -48,9 +56,10 @@ File3=C_String
 Count=4
 [EXPANDED_NODES]
 0=choose_signal.mcppi
-Count=1
+1=Sources
+Count=2
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
 242=Lcd
-Count=3
+Count=4
