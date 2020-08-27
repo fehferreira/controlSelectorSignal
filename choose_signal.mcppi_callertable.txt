@@ -1,5 +1,4 @@
 main
-	__CC2DW
 	Lcd_Init
 		Delay_5500us
 		Delay_1us
@@ -39,3 +38,5 @@ main
 interrupt
 	interrupt_tmr0
 		test_button
+			incrementoSignal
+			decrementoSignal

@@ -27,11 +27,6 @@ sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
 
 //---------------------------------------------------------------------------
-// --- CRIAÇAO DE VARIAVEIS
-
-char pos_selector = 1;
-
-//---------------------------------------------------------------------------
 // --- CÓDIGO PRINCIPAL
 void main()
 {

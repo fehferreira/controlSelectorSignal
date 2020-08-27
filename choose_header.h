@@ -25,6 +25,11 @@ void limpaLcd();
 
 void test_button();
 
+// --- SELETOR ---
+
+void incrementoSignal();
+void decrementoSignal();
+
 // --- TIMER0 ---
 
 void interrupt_tmr0();
@@ -33,5 +38,4 @@ void interrupt_tmr0();
 // --- CRIANDO VARIAVEIS GLOBAIS
 
 extern bit limpa_lcd;
-extern char pos_selector;
-
+extern unsigned short pos_selector;

@@ -27,31 +27,21 @@ void test_button()
   {
     limpa_lcd = 0x01;
     flagb1 = 0x00;
-    selector = 0x01;
     pos_selector++;
     if(pos_selector >= 11) pos_selector = 1;
+    
+    incrementoSignal();
   }
 
   if(!b2 && flagb2)
   {
-    char i;
-
     limpa_lcd = 0x01;
     flagb2 = 0x00;
-    selector = 0x01;
     pos_selector--;
     if(pos_selector <= 0) pos_selector = 10;
-    reset_selector = 0x01;
-    reset_selector = 0x00;
-    for(i = 0 ; i != pos_selector ; i++)
-    {
-      selector = 0x01;
-      selector = 0x00;
-    }
+    
+    decrementoSignal();
   }
-
-  selector = 0x00;
-
 }
 
 //----------------------------------------------------------------------------

@@ -301,6 +301,7 @@ dc2b1
 dc2b1_bit
 dec2bcd
 dec2bcd16
+decrementosignal
 delay_100ms
 delay_10ms
 delay_10us
@@ -549,6 +550,7 @@ idleif_bit
 idlen
 idlen_bit
 impressao
+incrementosignal
 indf0
 indf1
 indf2
