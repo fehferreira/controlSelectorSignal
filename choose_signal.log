@@ -1,19 +1,23 @@
-0	1	mikroCPIC1618.exe -MSF -DBG -pP18F4550 -DL -O11111114 -fo20 -N"C:\Users\Felipe - Oficina\Documents\Programação\PIC\alternador de sinais\choose_signal.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\Felipe - Oficina\Documents\Programação\PIC\alternador de sinais\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -IP"C:\Users\Felipe - Oficina\Documents\Programação\PIC\alternador de sinais\" "choose_main.c" "choose_view.c" "choose_controller.c" "choose_tmr0.c" "choose_seletor.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+0	1	mikroCPIC1618.exe -MSF -DBG -pP18F4550 -DL -O11111114 -fo20 -N"C:\Users\Felipe - Oficina\Documents\Programação\PIC\alternador de sinais\choose_signal.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\Felipe - Oficina\Documents\Programação\PIC\alternador de sinais\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -IP"C:\Users\Felipe - Oficina\Documents\Programação\PIC\alternador de sinais\" "choose_main.c" "choose_view.c" "choose_tmr0.c" "choose_seletor.c" "choose_logicMenu.c" "choose_tmr1.c" "choose_button.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
 hint: 0	1139	Available RAM: 2027 [bytes], Available ROM: 32768 [bytes]	 
 diagnostics: 0	122	Compilation Started	choose_header.h
-diagnostics: 79	123	Compiled Successfully	choose_main.c
+diagnostics: 76	123	Compiled Successfully	choose_main.c
 diagnostics: 0	122	Compilation Started	choose_header.h
-diagnostics: 59	123	Compiled Successfully	choose_view.c
+diagnostics: 134	123	Compiled Successfully	choose_view.c
 diagnostics: 0	122	Compilation Started	choose_header.h
-diagnostics: 45	123	Compiled Successfully	choose_controller.c
+diagnostics: 43	123	Compiled Successfully	choose_tmr0.c
 diagnostics: 0	122	Compilation Started	choose_header.h
-diagnostics: 27	123	Compiled Successfully	choose_tmr0.c
+diagnostics: 31	123	Compiled Successfully	choose_seletor.c
 diagnostics: 0	122	Compilation Started	choose_header.h
-diagnostics: 45	123	Compiled Successfully	choose_seletor.c
-diagnostics: 0	127	All files Compiled in 235 ms	 
-hint: 0	1144	Used RAM (bytes): 26 (1%)  Free RAM (bytes): 2001 (99%)	Used RAM (bytes): 26 (1%)  Free RAM (bytes): 2001 (99%)
-hint: 0	1144	Used ROM (bytes): 1359 (4%)  Free ROM (bytes): 31409 (96%)	Used ROM (bytes): 1359 (4%)  Free ROM (bytes): 31409 (96%)
+diagnostics: 131	123	Compiled Successfully	choose_logicMenu.c
+diagnostics: 0	122	Compilation Started	choose_header.h
+diagnostics: 42	123	Compiled Successfully	choose_tmr1.c
+diagnostics: 0	122	Compilation Started	choose_header.h
+diagnostics: 111	123	Compiled Successfully	choose_button.c
+diagnostics: 0	127	All files Compiled in 406 ms	 
+hint: 0	1144	Used RAM (bytes): 18 (1%)  Free RAM (bytes): 2009 (99%)	Used RAM (bytes): 18 (1%)  Free RAM (bytes): 2009 (99%)
+hint: 0	1144	Used ROM (bytes): 1591 (5%)  Free ROM (bytes): 31177 (95%)	Used ROM (bytes): 1591 (5%)  Free ROM (bytes): 31177 (95%)
 diagnostics: 0	125	Project Linked Successfully	choose_signal.mcppi
-diagnostics: 0	128	Linked in 78 ms	 
-diagnostics: 0	129	Project 'choose_signal.mcppi' completed: 344 ms	 
-diagnostics: 0	103	Finished successfully: 27 ago 2020, 17:22:12	choose_signal.mcppi
+diagnostics: 0	128	Linked in 94 ms	 
+diagnostics: 0	129	Project 'choose_signal.mcppi' completed: 547 ms	 
+diagnostics: 0	103	Finished successfully: 28 ago 2020, 14:02:50	choose_signal.mcppi

@@ -42,20 +42,12 @@ void main()
  ADCON0 = 0x00;                              //Conversor A-D Desabilitado
  ADCON1 = 0x0F;                              //Configurando saída como Digitais
  
+ flaginicio = 1;
+ limpa_lcd = 1;
+  
  //-------------- CONFIGURANDO TIMER0 ( TESTE DE BOTÃO ) --------------------
  
- limpa_lcd = 1;
- 
- T0CON = 0b10001000;                         //Configurando TMR0
-                                             //incremento por ciclo de máquina
-                                             //prescaler de 1:1
-                                             //utilizando 2 contadores de 8 bits
-
- TMR0H = 0xB1;                               //Iniciando os contadores (45536)
- TMR0L = 0xE0;                               //Iniciando os contadores (45536)
- TMR0IF_bit = 0x00;                          //Limpando a flag de interrupção
- TMR0IP_bit = 0x01;                          //Configurando como interrupção de alta prioridade
- TMR0IE_bit = 0x01;                          //Habilita interrupção do TMR0
+ configTMR0();
  
  //-------------- CONFIGURANDO LCD (BIBLIOTECA MIKROC) ----------------------
  
@@ -64,8 +56,8 @@ void main()
 
   while(1)
    {
-     limpaLcd();
-     impressao();
+     if(flaginicio == 1)    inicioLcd();
+     else                   logicaMenuPrincipal();
    }
 
 }//FINAL MAIN
@@ -74,6 +66,11 @@ void main()
 // --- DECLARAÇAO DAS FUNÇOES
 
 void interrupt()
+{
+  interrupt_tmr1();
+}
+
+void interrupt_low()
 {
   interrupt_tmr0();
 }

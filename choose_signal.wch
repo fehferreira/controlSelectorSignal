@@ -1,0 +1,6 @@
+<WCH v="2">
+<item n="RB7_bit" r="0" s="False" e="False" i="0"/>
+<item n="_flagb4" r="0" s="False" e="False" i="1"/>
+<item n="TMR0IF_bit" r="0" s="False" e="False" i="2"/>
+<item n="RB6_bit" r="0" s="False" e="False" i="3"/>
+</WCH>

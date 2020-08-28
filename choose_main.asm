@@ -18,49 +18,65 @@ _main:
 ;choose_main.c,43 :: 		ADCON1 = 0x0F;                              //Configurando saída como Digitais
 	MOVLW       15
 	MOVWF       ADCON1+0 
-;choose_main.c,47 :: 		limpa_lcd = 1;
+;choose_main.c,45 :: 		flaginicio = 1;
+	BSF         _flaginicio+0, BitPos(_flaginicio+0) 
+;choose_main.c,46 :: 		limpa_lcd = 1;
 	BSF         _limpa_lcd+0, BitPos(_limpa_lcd+0) 
-;choose_main.c,49 :: 		T0CON = 0b10001000;                         //Configurando TMR0
-	MOVLW       136
-	MOVWF       T0CON+0 
-;choose_main.c,54 :: 		TMR0H = 0xB1;                               //Iniciando os contadores (45536)
-	MOVLW       177
-	MOVWF       TMR0H+0 
-;choose_main.c,55 :: 		TMR0L = 0xE0;                               //Iniciando os contadores (45536)
-	MOVLW       224
-	MOVWF       TMR0L+0 
-;choose_main.c,56 :: 		TMR0IF_bit = 0x00;                          //Limpando a flag de interrupção
-	BCF         TMR0IF_bit+0, BitPos(TMR0IF_bit+0) 
-;choose_main.c,57 :: 		TMR0IP_bit = 0x01;                          //Configurando como interrupção de alta prioridade
-	BSF         TMR0IP_bit+0, BitPos(TMR0IP_bit+0) 
-;choose_main.c,58 :: 		TMR0IE_bit = 0x01;                          //Habilita interrupção do TMR0
-	BSF         TMR0IE_bit+0, BitPos(TMR0IE_bit+0) 
-;choose_main.c,62 :: 		Lcd_Init();                                 //Inicializa o LCD
+;choose_main.c,50 :: 		configTMR0();
+	CALL        _configTMR0+0, 0
+;choose_main.c,54 :: 		Lcd_Init();                                 //Inicializa o LCD
 	CALL        _Lcd_Init+0, 0
-;choose_main.c,63 :: 		Lcd_Cmd(_LCD_CURSOR_OFF);                   //Desabilita o curso do LCD
+;choose_main.c,55 :: 		Lcd_Cmd(_LCD_CURSOR_OFF);                   //Desabilita o curso do LCD
 	MOVLW       12
 	MOVWF       FARG_Lcd_Cmd_out_char+0 
 	CALL        _Lcd_Cmd+0, 0
-;choose_main.c,65 :: 		while(1)
+;choose_main.c,57 :: 		while(1)
 L_main0:
-;choose_main.c,67 :: 		limpaLcd();
-	CALL        _limpaLcd+0, 0
-;choose_main.c,68 :: 		impressao();
-	CALL        _impressao+0, 0
-;choose_main.c,69 :: 		}
+;choose_main.c,59 :: 		if(flaginicio == 1)    inicioLcd();
+	BTFSS       _flaginicio+0, BitPos(_flaginicio+0) 
+	GOTO        L_main2
+	CALL        _inicioLcd+0, 0
+	GOTO        L_main3
+L_main2:
+;choose_main.c,60 :: 		else                   logicaMenuPrincipal();
+	CALL        _logicaMenuPrincipal+0, 0
+L_main3:
+;choose_main.c,61 :: 		}
 	GOTO        L_main0
-;choose_main.c,71 :: 		}//FINAL MAIN
+;choose_main.c,63 :: 		}//FINAL MAIN
 L_end_main:
 	GOTO        $+0
 ; end of _main
 
 _interrupt:
 
-;choose_main.c,76 :: 		void interrupt()
-;choose_main.c,78 :: 		interrupt_tmr0();
-	CALL        _interrupt_tmr0+0, 0
-;choose_main.c,79 :: 		}
+;choose_main.c,68 :: 		void interrupt()
+;choose_main.c,70 :: 		interrupt_tmr1();
+	CALL        _interrupt_tmr1+0, 0
+;choose_main.c,71 :: 		}
 L_end_interrupt:
-L__interrupt4:
+L__interrupt6:
 	RETFIE      1
 ; end of _interrupt
+
+_interrupt_low:
+	MOVWF       ___Low_saveWREG+0 
+	MOVF        STATUS+0, 0 
+	MOVWF       ___Low_saveSTATUS+0 
+	MOVF        BSR+0, 0 
+	MOVWF       ___Low_saveBSR+0 
+
+;choose_main.c,73 :: 		void interrupt_low()
+;choose_main.c,75 :: 		interrupt_tmr0();
+	CALL        _interrupt_tmr0+0, 0
+;choose_main.c,76 :: 		}
+L_end_interrupt_low:
+L__interrupt_low8:
+	MOVF        ___Low_saveBSR+0, 0 
+	MOVWF       BSR+0 
+	MOVF        ___Low_saveSTATUS+0, 0 
+	MOVWF       STATUS+0 
+	SWAPF       ___Low_saveWREG+0, 1 
+	SWAPF       ___Low_saveWREG+0, 0 
+	RETFIE      0
+; end of _interrupt_low

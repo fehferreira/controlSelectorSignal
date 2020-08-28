@@ -151,6 +151,7 @@ btsee
 btsee_bit
 btsef
 btsef_bit
+buttonmenu
 byte2double
 bytetohex
 bytetostr
@@ -248,6 +249,10 @@ cmip
 cmip_bit
 comfrem
 compare_double
+configtmr0
+configtmr1
+controle_menu
+counter_rotacao
 crc16ee
 crc16ee_bit
 crc16ef
@@ -301,7 +306,6 @@ dc2b1
 dc2b1_bit
 dec2bcd
 dec2bcd16
-decrementosignal
 delay_100ms
 delay_10ms
 delay_10us
@@ -316,6 +320,7 @@ delay_5ms
 delay_80us
 delay_8ms
 delay_cyc
+desligasinais
 dfn8ee
 dfn8ee_bit
 dfn8ef
@@ -461,6 +466,11 @@ ferr_bit
 fixsign32
 flagb1
 flagb2
+flagb3
+flagb4
+flagconfirma
+flaginicio
+flagvoltar
 floattostr
 floattostr_fixlen
 flts
@@ -549,11 +559,10 @@ idleif
 idleif_bit
 idlen
 idlen_bit
-impressao
-incrementosignal
 indf0
 indf1
 indf2
+iniciolcd
 int0
 int0_bit
 int0e
@@ -603,7 +612,9 @@ intedg1_bit
 intedg2
 intedg2_bit
 interrupt
+interrupt_low
 interrupt_tmr0
+interrupt_tmr1
 intsrc
 intsrc_bit
 inttohex
@@ -712,6 +723,9 @@ lcd_rs
 lcd_rs_direction
 limpa_lcd
 limpalcd
+logicamenu1
+logicamenu2
+logicamenuprincipal
 longint2double
 longinttohex
 longinttostrwithzeros
@@ -750,11 +764,15 @@ lvv2_bit
 lvv3
 lvv3_bit
 main
+max_menu
 memchr
 memcmp
 memcpy
 memmove
 memset
+menu1
+menu2
+min_menu
 mul_16x16_s
 mul_16x16_u
 mul_32x32_fp
@@ -890,7 +908,7 @@ portb
 portc
 portd
 porte
-pos_selector
+pos_menu
 postdec0
 postdec1
 postdec2
@@ -1083,6 +1101,7 @@ scs1_bit
 sdiv3232l
 se0
 se0_bit
+seletorsignal
 sen
 sen_bit
 sendb
@@ -1095,6 +1114,7 @@ setjmp
 shorttohex
 shorttostr
 shorttostrwithzeros
+sinais
 smp
 smp_bit
 sofie
@@ -1277,7 +1297,6 @@ tblptr
 tblptrh
 tblptrl
 tblptru
-test_button
 tmr0h
 tmr0ie
 tmr0ie_bit
@@ -1435,6 +1454,7 @@ txip
 txip_bit
 txreg
 txsta
+txt
 ua
 ua_bit
 uaddr
@@ -1487,6 +1507,7 @@ uteye
 uteye_bit
 utrdis
 utrdis_bit
+var_menu
 vcfg0
 vcfg0_bit
 vcfg1
@@ -1495,6 +1516,7 @@ vdelay_advanced_ms
 vdelay_ms
 vdirmag
 vdirmag_bit
+vetor_menu
 vrefm
 vrefm_bit
 vrefp

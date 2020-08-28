@@ -12,35 +12,20 @@
 //-----------------------------------------------------------------------------
 // --- DEFININDO OS PROTÓTIPOS DAS FUNÇÕES
 
-void incrementoSignal();
-void decrementoSignal();
-
-//-----------------------------------------------------------------------------
-// --- DEFINIDO VARIAVEIS GLOBAIS
-
-unsigned short pos_selector = 1;
+void seletorSignal(unsigned short signalSeletor);
 
 //-----------------------------------------------------------------------------
 // --- DESENVOLVENDO AS FUNÇÕES
 
-void incrementoSignal()
-{
-  selector = 0x01;
-  selector = 0x00;
-}
-
-
-void decrementoSignal()
+void seletorSignal(unsigned short signalSeletor)
 {
   char i;
 
-  selector = 0x01;
   reset_selector = 0x01;
   reset_selector = 0x00;
-  for(i = 0 ; i != pos_selector ; i++)
+  for(i = 0 ; i != signalSeletor ; i++)
   {
     selector = 0x01;
     selector = 0x00;
   }
 }
-

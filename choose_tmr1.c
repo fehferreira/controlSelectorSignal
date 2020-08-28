@@ -13,7 +13,7 @@
 //---------- TRATAMENTO DE INTERRUPÇÃO DO TIMER0 (TESTE DO BOTAO)----------
 
 
-void configTMR0()
+void configTMR1()
 {
  T0CON = 0b10001000;                         //Configurando TMR0
                                              //incremento por ciclo de máquina
@@ -23,21 +23,20 @@ void configTMR0()
  TMR0H = 0xB1;                               //Iniciando os contadores (45536)
  TMR0L = 0xE0;                               //Iniciando os contadores (45536)
  TMR0IF_bit = 0x00;                          //Limpando a flag de interrupção
- TMR0IP_bit = 0x00;                          //Configurando como interrupção de alta prioridade
+ TMR0IP_bit = 0x01;                          //Configurando como interrupção de alta prioridade
  TMR0IE_bit = 0x01;                          //Habilita interrupção do TMR0
 }
 
 //-----------------------------------------------------------------------------
 
-void interrupt_tmr0()
+void interrupt_tmr1()
 {
-  if(TMR0IF_bit)
+  if(TMR1IF_bit)
   {
-    TMR0IF_bit = 0x00;                       //Limpa a flag de interrupção
-    TMR0H = 0xB1;                            //Reiniciando os contadores (45536)
-    TMR0L = 0xE0;                            //Reiniciando os contadores (45536)
+    TMR1IF_bit = 0x00;                       //Limpa a flag de interrupção
+    TMR1H = 0xB1;                            //Reiniciando os contadores (45536)
+    TMR1L = 0xE0;                            //Reiniciando os contadores (45536)
     out_signal = ~out_signal;
-    
-    buttonMenu();
+
   }
 }

@@ -1,4 +1,5 @@
 main
+	configTMR0
 	Lcd_Init
 		Delay_5500us
 		Delay_1us
@@ -6,12 +7,12 @@ main
 		Delay_1us
 		Delay_5500us
 		Delay_50us
-	limpaLcd
-		Lcd_Cmd
-			Delay_1us
-			Delay_5500us
-			Delay_50us
-	impressao
+	inicioLcd
+		limpaLcd
+			Lcd_Cmd
+				Delay_1us
+				Delay_5500us
+				Delay_50us
 		Lcd_Chr
 			Lcd_Cmd
 				Delay_1us
@@ -22,21 +23,48 @@ main
 				Delay_1us
 				Delay_5500us
 				Delay_50us
-		IntToStr
-			WordToStr
-				Div_16X16_U
-		Lcd_Out
-			Lcd_Cmd
-				Delay_1us
-				Delay_5500us
-				Delay_50us
+	logicaMenuPrincipal
+		menu1
+			limpaLcd
+				Lcd_Cmd
+					Delay_1us
+					Delay_5500us
+					Delay_50us
+			Lcd_Chr
+				Lcd_Cmd
+					Delay_1us
+					Delay_5500us
+					Delay_50us
 			Lcd_Chr_CP
 				Lcd_Cmd
 					Delay_1us
 					Delay_5500us
 					Delay_50us
-interrupt
+		menu2
+			limpaLcd
+				Lcd_Cmd
+					Delay_1us
+					Delay_5500us
+					Delay_50us
+			Lcd_Chr
+				Lcd_Cmd
+					Delay_1us
+					Delay_5500us
+					Delay_50us
+			Lcd_Chr_CP
+				Lcd_Cmd
+					Delay_1us
+					Delay_5500us
+					Delay_50us
+		controle_menu
+		logicaMenu1
+			seletorSignal
+			controle_menu
+		logicaMenu2
+			seletorSignal
+			controle_menu
+interrupt_low
 	interrupt_tmr0
-		test_button
-			incrementoSignal
-			decrementoSignal
+		buttonMenu
+interrupt
+	interrupt_tmr1
