@@ -547,3 +547,65 @@ _sinalFonica:
 L_end_sinalFonica:
 	RETURN      0
 ; end of _sinalFonica
+
+_sinalHall:
+
+;view.c,184 :: 		void sinalHall()
+;view.c,186 :: 		limpaLcd();
+	CALL        _limpaLcd+0, 0
+;view.c,188 :: 		Lcd_Chr(1,1,'S');
+	MOVLW       1
+	MOVWF       FARG_Lcd_Chr_row+0 
+	MOVLW       1
+	MOVWF       FARG_Lcd_Chr_column+0 
+	MOVLW       83
+	MOVWF       FARG_Lcd_Chr_out_char+0 
+	CALL        _Lcd_Chr+0, 0
+;view.c,189 :: 		Lcd_Chr_Cp('I');
+	MOVLW       73
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,190 :: 		Lcd_Chr_Cp('N');
+	MOVLW       78
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,191 :: 		Lcd_Chr_Cp('A');
+	MOVLW       65
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,192 :: 		Lcd_Chr_Cp('L');
+	MOVLW       76
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,193 :: 		Lcd_Chr_Cp(' ');
+	MOVLW       32
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,194 :: 		Lcd_Chr_Cp('H');
+	MOVLW       72
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,195 :: 		Lcd_Chr_Cp('A');
+	MOVLW       65
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,196 :: 		Lcd_Chr_Cp('L');
+	MOVLW       76
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,197 :: 		Lcd_Chr_Cp('L');
+	MOVLW       76
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,198 :: 		Lcd_Chr_Cp(' ');
+	MOVLW       32
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,199 :: 		Lcd_Chr_Cp(':');
+	MOVLW       58
+	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
+	CALL        _Lcd_Chr_CP+0, 0
+;view.c,200 :: 		}
+L_end_sinalHall:
+	RETURN      0
+; end of _sinalHall

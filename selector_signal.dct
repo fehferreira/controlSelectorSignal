@@ -736,6 +736,7 @@ lcd_rs_direction
 limpa_lcd
 limpalcd
 logicafonica
+logicahall
 logicamenuprincipal
 longint2double
 longinttohex
@@ -1126,6 +1127,7 @@ shorttohex
 shorttostr
 shorttostrwithzeros
 sinalfonica
+sinalhall
 smp
 smp_bit
 sofie

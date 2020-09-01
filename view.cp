@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/view.c"
-#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
-#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
+#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/view.c"
+#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
+#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
 extern sfr sbit voltar;
 extern sfr sbit esquerda;
 extern sfr sbit direita;
@@ -16,12 +16,14 @@ void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
 void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalHall();
 
 
 
 
 void logicaMenuPrincipal();
 void logicaFonica();
+void logicaHall();
 void buttonMenu();
 
 
@@ -38,7 +40,7 @@ extern unsigned short var_menu,
  vetor_menu[5];
 
 extern unsigned int counter_rotacao;
-#line 16 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/view.c"
+#line 16 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/view.c"
 char txt[7];
 
 char opcoesSinal[2] [16] = {"SINAL INDUTIVO", "SINAL HALL"};
@@ -203,4 +205,24 @@ void sinalFonica(unsigned short dentes,unsigned short espacos)
 
  ByteToStr(espacos,txt);
  Lcd_Out(2,6,Ltrim(txt));
+}
+
+
+
+void sinalHall()
+{
+ limpaLcd();
+
+ Lcd_Chr(1,1,'S');
+ Lcd_Chr_Cp('I');
+ Lcd_Chr_Cp('N');
+ Lcd_Chr_Cp('A');
+ Lcd_Chr_Cp('L');
+ Lcd_Chr_Cp(' ');
+ Lcd_Chr_Cp('H');
+ Lcd_Chr_Cp('A');
+ Lcd_Chr_Cp('L');
+ Lcd_Chr_Cp('L');
+ Lcd_Chr_Cp(' ');
+ Lcd_Chr_Cp(':');
 }

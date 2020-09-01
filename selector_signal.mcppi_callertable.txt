@@ -143,6 +143,23 @@ main
 							Delay_5500us
 							Delay_50us
 			controle_menu
+		logicaHall
+			sinalHall
+				limpaLcd
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				Lcd_Chr
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				Lcd_Chr_CP
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
 interrupt_low
 	interruptTMR0
 		buttonMenu

@@ -58,6 +58,7 @@ void logicaMenuPrincipal()
     switch(vetor_menu[pos_menu-1])
     {
         case 0: logicaFonica();break;
+        case 1: logicaHall();  break;
     }
   }
   
@@ -72,8 +73,6 @@ void logicaFonica()
 
   while(flagVoltar != 1)
   {
-    var_menu = 60;
-    
     while(flagConfirma != 1)
     {
       escolhaDentes(var_menu);
@@ -109,3 +108,22 @@ void logicaFonica()
 }
 
 //----------------------------------------------------------------------------
+
+void logicaHall()
+{
+  while(flagVoltar != 1)
+  {
+  
+    while(flagConfirma != 1)
+    {
+      sinalHall();
+    }
+    flagConfirma = 0;
+  }
+  flagVoltar = 0;
+}
+
+//----------------------------------------------------------------------------
+
+
+

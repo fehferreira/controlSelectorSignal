@@ -181,5 +181,24 @@ void sinalFonica(unsigned short dentes,unsigned short espacos)
 
 //-----------------------------------------------------------------------------
 
-//==============================================================================
-//---------------   SUB MENUS - NVL 1   -----------------
+void sinalHall()
+{
+  limpaLcd();
+
+  Lcd_Chr(1,1,'S');
+  Lcd_Chr_Cp('I');
+  Lcd_Chr_Cp('N');
+  Lcd_Chr_Cp('A');
+  Lcd_Chr_Cp('L');
+  Lcd_Chr_Cp(' ');
+  Lcd_Chr_Cp('H');
+  Lcd_Chr_Cp('A');
+  Lcd_Chr_Cp('L');
+  Lcd_Chr_Cp('L');
+  Lcd_Chr_Cp(' ');
+  Lcd_Chr_Cp(':');
+}
+
+//-----------------------------------------------------------------------------
+
+

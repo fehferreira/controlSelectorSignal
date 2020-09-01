@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/menu.c"
-#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
-#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
+#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
+#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
+#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
 extern sfr sbit voltar;
 extern sfr sbit esquerda;
 extern sfr sbit direita;
@@ -16,12 +16,14 @@ void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
 void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalHall();
 
 
 
 
 void logicaMenuPrincipal();
 void logicaFonica();
+void logicaHall();
 void buttonMenu();
 
 
@@ -38,7 +40,7 @@ extern unsigned short var_menu,
  vetor_menu[5];
 
 extern unsigned int counter_rotacao;
-#line 15 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/menu.c"
+#line 15 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
 bit flagConfirma,
  flagVoltar;
 
@@ -85,6 +87,7 @@ void logicaMenuPrincipal()
  switch(vetor_menu[pos_menu-1])
  {
  case 0: logicaFonica();break;
+ case 1: logicaHall(); break;
  }
  }
 
@@ -99,8 +102,6 @@ void logicaFonica()
 
  while(flagVoltar != 1)
  {
- var_menu = 60;
-
  while(flagConfirma != 1)
  {
  escolhaDentes(var_menu);
@@ -126,8 +127,24 @@ void logicaFonica()
 
  if(flagVoltar != 1)
  {
-#line 106 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/menu.c"
+#line 105 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
  }
+ }
+ flagVoltar = 0;
+}
+
+
+
+void logicaHall()
+{
+ while(flagVoltar != 1)
+ {
+
+ while(flagConfirma != 1)
+ {
+ sinalHall();
+ }
+ flagConfirma = 0;
  }
  flagVoltar = 0;
 }

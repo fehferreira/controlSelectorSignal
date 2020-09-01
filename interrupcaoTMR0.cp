@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR0.c"
-#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
-#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
+#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR0.c"
+#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
 sbit LCD_RS at LATD2_bit;
 sbit LCD_EN at LATD3_bit;
 sbit LCD_D4 at LATD4_bit;
@@ -26,8 +26,8 @@ sbit LCD_D7_Direction at TRISD7_bit;
 
 void interruptTMR0();
 void configInterruptTMR0();
-#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
-#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
+#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
+#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
 extern sfr sbit voltar;
 extern sfr sbit esquerda;
 extern sfr sbit direita;
@@ -43,12 +43,14 @@ void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
 void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalHall();
 
 
 
 
 void logicaMenuPrincipal();
 void logicaFonica();
+void logicaHall();
 void buttonMenu();
 
 
@@ -65,7 +67,7 @@ extern unsigned short var_menu,
  vetor_menu[5];
 
 extern unsigned int counter_rotacao;
-#line 17 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR0.c"
+#line 17 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR0.c"
 void interruptTMR0()
 {
  if(TMR0IF_bit)

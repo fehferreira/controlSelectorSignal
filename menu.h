@@ -23,12 +23,14 @@ void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
 void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalHall();
 
 //----------------------------------------------------------------------------
 // --- DECLARAÇÃO DOS PROTÓTIPOS DAS FUNÇÕES DO CONTROLLER ----
 
 void logicaMenuPrincipal();
 void logicaFonica();
+void logicaHall();
 void buttonMenu();
 
 //-----------------------------------------------------------------------------
