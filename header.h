@@ -24,3 +24,17 @@ sbit LCD_D7_Direction at TRISD7_bit;
 
 //-----------------------------------------------------------------------------
 // ---- DECLARANDO VARIAVEIS GLOBAIS DO PROJETO ----
+
+
+
+//-----------------------------------------------------------------------------
+// ---- DECLARANDO FUNCOES PARA SEREM DESENVOLVIDAS ----
+
+// --- FUNCAO DE INTERRUPCAO TMR0 (TESTE BOTAO) ---
+void interruptTMR0();
+void configInterruptTMR0();
+
+
+
+
+

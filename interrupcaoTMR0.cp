@@ -1,4 +1,4 @@
-#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/projeto_menus.c"
+#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR0.c"
 #line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 #line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 sbit LCD_RS at LATD2_bit;
@@ -63,67 +63,30 @@ extern unsigned short var_menu,
  vetor_menu[5];
 
 extern unsigned int counter_rotacao;
-#line 32 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/projeto_menus.c"
-sbit voltar at RB4_bit;
-sbit esquerda at RB5_bit;
-sbit direita at RB6_bit;
-sbit ok at RB7_bit;
-
-
-
-
-unsigned int contador_rotacao;
-
-
-
-
-
-void interrupt();
-void interrupt_low();
-
-
-
-void main()
+#line 17 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR0.c"
+void interruptTMR0()
 {
-
-
- GIE_bit = 0x01;
- PEIE_bit = 0x01;
- IPEN_bit = 0x01;
-
-
-
- configInterruptTMR0();
-
-
-
- ADCON0 = 0x00;
- ADCON1 = 0x0F;
-
- TRISB = 0xF0;
- TRISD = 0x00;
-
-
- Lcd_Init();
- Lcd_Cmd(_LCD_CURSOR_OFF);
-
- InicioLcd();
- delay_ms(1500);
- limpa_lcd = 1;
- limpaLcd();
-
- while(1)
+ if(TMR0IF_bit)
  {
- logicaMenuPrincipal();
+ TMR0IF_bit = 0x00;
+ TMR0H = 0xB1;
+ TMR0L = 0xE0;
 
+ buttonMenu();
  }
-
 }
 
 
 
-
-void interrupt_low()
+void configInterruptTMR0()
 {
- interruptTMR0();
+ T0CON = 0b10001000;
+
+
+
+
+ TMR0H = 0xB1;
+ TMR0L = 0xE0;
+ TMR0IE_bit = 0x01;
+ TMR0IP_bit = 0x00;
 }

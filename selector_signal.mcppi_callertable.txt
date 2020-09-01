@@ -1,4 +1,5 @@
 main
+	configInterruptTMR0
 	Lcd_Init
 		Delay_5500us
 		Delay_1us
@@ -84,4 +85,5 @@ main
 							Delay_50us
 			controle_menu
 interrupt_low
-	buttonMenu
+	interruptTMR0
+		buttonMenu

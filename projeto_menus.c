@@ -58,15 +58,7 @@ void main()
 
    // --- CONFIGURANDO TIMER0 (TESTE DE BOTOES) ---
    
-   T0CON = 0b10001000;                     //Configurando TIMER0
-                                           //Habilita TIMER0
-                                           //Prescaler 1:1
-                                           //2 counters de 8bits
-                                           //Incremento por ciclo de máquina
-   TMR0H = 0xB1;                           //Inicializa o counter High do TIMER0
-   TMR0L = 0xE0;                           //Inicializa o counter LOW do TIMER0
-   TMR0IE_bit = 0x01;                      //Habilita interrupção do TIMER0
-   TMR0IP_bit = 0x00;                      //Configura TMR0 como baixa prioridade.
+   configInterruptTMR0();
 
    // --- CONFIGURANDO AS ENTRADAS ---
    
@@ -98,14 +90,7 @@ void main()
 
 void interrupt_low()                           //Funcao de interrupcao
 {
-  if(TMR0IF_bit)                           //Houve interrupçao externa?
-  {                                        //Sim...
-    TMR0IF_bit = 0x00;                     //Limpa flag da interrupçao
-    TMR0H = 0xB1;                          //Reinicializa TMR0H
-    TMR0L = 0xE0;                          //Reinicializa TMR0L
-    
-    buttonMenu();
-  }
+  interruptTMR0();
 }
 
 //----------------------------------------------------------------------------
