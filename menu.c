@@ -57,7 +57,7 @@ void logicaMenuPrincipal()
 
     switch(vetor_menu[pos_menu-1])
     {
-        case 0: logicaMenu1();break;
+        case 0: logicaFonica();break;
     }
   }
   
@@ -66,15 +66,34 @@ void logicaMenuPrincipal()
 
 //----------------------------------------------------------------------------
 
-void logicaMenu1()
+void logicaFonica()
 {
+  unsigned short dentes, espacos;
+
   while(flagVoltar != 1)
   {
+    var_menu = 60;
+    
     while(flagConfirma != 1)
     {
-      menu1(var_menu);
+      escolhaDentes(var_menu);
     }
+    flagConfirma = 0;
+    dentes = var_menu;
+    var_menu = 0;
     
+    while(flagConfirma != 1)
+    {
+      escolhaEspacos(var_menu);
+    }
+    flagConfirma = 0;
+    espacos = var_menu;
+    var_menu = 0;
+    
+    while(flagConfirma != 1)
+    {
+      sinalFonica(dentes,espacos);
+    }
     flagConfirma = 0;
     var_menu = controle_menu(var_menu);
     
@@ -88,3 +107,5 @@ void logicaMenu1()
   }
   flagVoltar = 0;
 }
+
+//----------------------------------------------------------------------------

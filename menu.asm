@@ -90,9 +90,9 @@ L_logicaMenuPrincipal6:
 	ADDWFC      R1, 0 
 	MOVWF       FLOC__logicaMenuPrincipal+1 
 	GOTO        L_logicaMenuPrincipal7
-;menu.c,60 :: 		case 0: logicaMenu1();break;
+;menu.c,60 :: 		case 0: logicaFonica();break;
 L_logicaMenuPrincipal9:
-	CALL        _logicaMenu1+0, 0
+	CALL        _logicaFonica+0, 0
 	GOTO        L_logicaMenuPrincipal8
 ;menu.c,61 :: 		}
 L_logicaMenuPrincipal7:
@@ -113,43 +113,84 @@ L_end_logicaMenuPrincipal:
 	RETURN      0
 ; end of _logicaMenuPrincipal
 
-_logicaMenu1:
+_logicaFonica:
 
-;menu.c,69 :: 		void logicaMenu1()
-;menu.c,71 :: 		while(flagVoltar != 1)
-L_logicaMenu110:
+;menu.c,69 :: 		void logicaFonica()
+;menu.c,73 :: 		while(flagVoltar != 1)
+L_logicaFonica10:
 	BTFSC       _flagVoltar+0, BitPos(_flagVoltar+0) 
-	GOTO        L_logicaMenu111
-;menu.c,73 :: 		while(flagConfirma != 1)
-L_logicaMenu112:
+	GOTO        L_logicaFonica11
+;menu.c,75 :: 		var_menu = 60;
+	MOVLW       60
+	MOVWF       _var_menu+0 
+;menu.c,77 :: 		while(flagConfirma != 1)
+L_logicaFonica12:
 	BTFSC       _flagConfirma+0, BitPos(_flagConfirma+0) 
-	GOTO        L_logicaMenu113
-;menu.c,75 :: 		menu1(var_menu);
+	GOTO        L_logicaFonica13
+;menu.c,79 :: 		escolhaDentes(var_menu);
 	MOVF        _var_menu+0, 0 
-	MOVWF       FARG_menu1_var_menu+0 
-	CALL        _menu1+0, 0
-;menu.c,76 :: 		}
-	GOTO        L_logicaMenu112
-L_logicaMenu113:
-;menu.c,78 :: 		flagConfirma = 0;
+	MOVWF       FARG_escolhaDentes_var_menu+0 
+	CALL        _escolhaDentes+0, 0
+;menu.c,80 :: 		}
+	GOTO        L_logicaFonica12
+L_logicaFonica13:
+;menu.c,81 :: 		flagConfirma = 0;
 	BCF         _flagConfirma+0, BitPos(_flagConfirma+0) 
-;menu.c,79 :: 		var_menu = controle_menu(var_menu);
+;menu.c,82 :: 		dentes = var_menu;
+	MOVF        _var_menu+0, 0 
+	MOVWF       logicaFonica_dentes_L0+0 
+;menu.c,83 :: 		var_menu = 0;
+	CLRF        _var_menu+0 
+;menu.c,85 :: 		while(flagConfirma != 1)
+L_logicaFonica14:
+	BTFSC       _flagConfirma+0, BitPos(_flagConfirma+0) 
+	GOTO        L_logicaFonica15
+;menu.c,87 :: 		escolhaEspacos(var_menu);
+	MOVF        _var_menu+0, 0 
+	MOVWF       FARG_escolhaEspacos_var_menu+0 
+	CALL        _escolhaEspacos+0, 0
+;menu.c,88 :: 		}
+	GOTO        L_logicaFonica14
+L_logicaFonica15:
+;menu.c,89 :: 		flagConfirma = 0;
+	BCF         _flagConfirma+0, BitPos(_flagConfirma+0) 
+;menu.c,90 :: 		espacos = var_menu;
+	MOVF        _var_menu+0, 0 
+	MOVWF       logicaFonica_espacos_L0+0 
+;menu.c,91 :: 		var_menu = 0;
+	CLRF        _var_menu+0 
+;menu.c,93 :: 		while(flagConfirma != 1)
+L_logicaFonica16:
+	BTFSC       _flagConfirma+0, BitPos(_flagConfirma+0) 
+	GOTO        L_logicaFonica17
+;menu.c,95 :: 		sinalFonica(dentes,espacos);
+	MOVF        logicaFonica_dentes_L0+0, 0 
+	MOVWF       FARG_sinalFonica_dentes+0 
+	MOVF        logicaFonica_espacos_L0+0, 0 
+	MOVWF       FARG_sinalFonica_espacos+0 
+	CALL        _sinalFonica+0, 0
+;menu.c,96 :: 		}
+	GOTO        L_logicaFonica16
+L_logicaFonica17:
+;menu.c,97 :: 		flagConfirma = 0;
+	BCF         _flagConfirma+0, BitPos(_flagConfirma+0) 
+;menu.c,98 :: 		var_menu = controle_menu(var_menu);
 	MOVF        _var_menu+0, 0 
 	MOVWF       FARG_controle_menu_var_atual+0 
 	CALL        _controle_menu+0, 0
 	MOVF        R0, 0 
 	MOVWF       _var_menu+0 
-;menu.c,81 :: 		if(flagVoltar != 1)
+;menu.c,100 :: 		if(flagVoltar != 1)
 	BTFSC       _flagVoltar+0, BitPos(_flagVoltar+0) 
-	GOTO        L_logicaMenu114
-;menu.c,87 :: 		}
-L_logicaMenu114:
-;menu.c,88 :: 		}
-	GOTO        L_logicaMenu110
-L_logicaMenu111:
-;menu.c,89 :: 		flagVoltar = 0;
+	GOTO        L_logicaFonica18
+;menu.c,106 :: 		}
+L_logicaFonica18:
+;menu.c,107 :: 		}
+	GOTO        L_logicaFonica10
+L_logicaFonica11:
+;menu.c,108 :: 		flagVoltar = 0;
 	BCF         _flagVoltar+0, BitPos(_flagVoltar+0) 
-;menu.c,90 :: 		}
-L_end_logicaMenu1:
+;menu.c,109 :: 		}
+L_end_logicaFonica:
 	RETURN      0
-; end of _logicaMenu1
+; end of _logicaFonica

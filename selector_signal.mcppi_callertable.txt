@@ -56,8 +56,8 @@ main
 						Delay_5500us
 						Delay_50us
 		controle_menu
-		logicaMenu1
-			menu1
+		logicaFonica
+			escolhaDentes
 				limpaLcd
 					Lcd_Cmd
 						Delay_1us
@@ -73,6 +73,65 @@ main
 						Delay_1us
 						Delay_5500us
 						Delay_50us
+				ByteToStr
+					Div_8X8_U
+				Lcd_Out
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+					Lcd_Chr_CP
+						Lcd_Cmd
+							Delay_1us
+							Delay_5500us
+							Delay_50us
+			escolhaEspacos
+				limpaLcd
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				Lcd_Chr
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				Lcd_Chr_CP
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				ByteToStr
+					Div_8X8_U
+				Lcd_Out
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+					Lcd_Chr_CP
+						Lcd_Cmd
+							Delay_1us
+							Delay_5500us
+							Delay_50us
+			sinalFonica
+				limpaLcd
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				Lcd_Chr
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				Lcd_Chr_CP
+					Lcd_Cmd
+						Delay_1us
+						Delay_5500us
+						Delay_50us
+				ByteToStr
+					Div_8X8_U
+				Ltrim
 				Lcd_Out
 					Lcd_Cmd
 						Delay_1us

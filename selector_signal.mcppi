@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=projeto_menus.c
+Value=view.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -28,9 +28,9 @@ Count=0
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=header.h
-File1=projeto_menus.c
-File2=interrupcaoTMR0.c
+File0=menu.c
+File1=view.c
+File2=menu.h
 Count=3
 [EEPROM]
 Count=0
@@ -51,12 +51,16 @@ Count=0
 [Useses]
 File0=Lcd
 File1=Lcd_Constants
-Count=2
+File2=Conversions
+File3=C_String
+Count=4
 [EXPANDED_NODES]
 0=selector_signal.mcppi
 1=Sources
-Count=2
+7=Header Files
+Count=3
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
+45=Conversions
 Count=3

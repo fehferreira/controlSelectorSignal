@@ -10,16 +10,18 @@ extern sfr sbit ok;
 
 
 void limpaLcd();
-
 void inicioLcd();
+
 void menuPrincipal(unsigned short var_menu);
-void menu1(unsigned short var_menu);
+void escolhaDentes(unsigned short var_menu);
+void escolhaEspacos(unsigned short var_menu);
+void sinalFonica(unsigned short dentes,unsigned short espacos);
 
 
 
 
 void logicaMenuPrincipal();
-void logicaMenu1();
+void logicaFonica();
 void buttonMenu();
 
 

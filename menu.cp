@@ -10,16 +10,18 @@ extern sfr sbit ok;
 
 
 void limpaLcd();
-
 void inicioLcd();
+
 void menuPrincipal(unsigned short var_menu);
-void menu1(unsigned short var_menu);
+void escolhaDentes(unsigned short var_menu);
+void escolhaEspacos(unsigned short var_menu);
+void sinalFonica(unsigned short dentes,unsigned short espacos);
 
 
 
 
 void logicaMenuPrincipal();
-void logicaMenu1();
+void logicaFonica();
 void buttonMenu();
 
 
@@ -82,7 +84,7 @@ void logicaMenuPrincipal()
 
  switch(vetor_menu[pos_menu-1])
  {
- case 0: logicaMenu1();break;
+ case 0: logicaFonica();break;
  }
  }
 
@@ -91,21 +93,40 @@ void logicaMenuPrincipal()
 
 
 
-void logicaMenu1()
+void logicaFonica()
 {
+ unsigned short dentes, espacos;
+
  while(flagVoltar != 1)
  {
+ var_menu = 60;
+
  while(flagConfirma != 1)
  {
- menu1(var_menu);
+ escolhaDentes(var_menu);
  }
+ flagConfirma = 0;
+ dentes = var_menu;
+ var_menu = 0;
 
+ while(flagConfirma != 1)
+ {
+ escolhaEspacos(var_menu);
+ }
+ flagConfirma = 0;
+ espacos = var_menu;
+ var_menu = 0;
+
+ while(flagConfirma != 1)
+ {
+ sinalFonica(dentes,espacos);
+ }
  flagConfirma = 0;
  var_menu = controle_menu(var_menu);
 
  if(flagVoltar != 1)
  {
-#line 87 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/menu.c"
+#line 106 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/menu.c"
  }
  }
  flagVoltar = 0;
