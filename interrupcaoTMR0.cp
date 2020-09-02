@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR0.c"
-#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
-#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR0.c"
+#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
+#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 sbit LCD_RS at LATD2_bit;
 sbit LCD_EN at LATD3_bit;
 sbit LCD_D4 at LATD4_bit;
@@ -14,7 +14,7 @@ sbit LCD_D4_Direction at TRISD4_bit;
 sbit LCD_D5_Direction at TRISD5_bit;
 sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
-#line 39 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 39 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 void interruptTMR1();
 void configInterruptTMR1();
 void ligarTMR1();
@@ -25,8 +25,8 @@ void interruptTMR0();
 void configInterruptTMR0();
 void ligarTMR0();
 void desligaTMR0();
-#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
-#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
+#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
+#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
 extern sfr sbit voltar;
 extern sfr sbit esquerda;
 extern sfr sbit direita;
@@ -51,6 +51,7 @@ void logicaMenuPrincipal();
 void logicaFonica();
 void logicaHall();
 void buttonMenu();
+void buttonRotacao();
 
 
 
@@ -58,21 +59,21 @@ void buttonMenu();
 extern bit limpa_lcd,
  flagVoltar,
  flagConfirma,
- flagHall;
+ flagHall,
+ flagRotacao;
 
 extern unsigned short var_menu,
  pos_menu,
- max_menu,
- min_menu,
  dentes,
  espacos,
+ valor_tmr1,
  vetor_menu[5];
 
 extern unsigned int counter_rotacao,
+ max_menu,
+ min_menu,
  contT;
-
-extern float valor_tmr1;
-#line 17 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR0.c"
+#line 17 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR0.c"
 void interruptTMR0()
 {
  if(TMR0IF_bit)
@@ -81,7 +82,8 @@ void interruptTMR0()
  TMR0H = 0xB1;
  TMR0L = 0xE0;
 
- buttonMenu();
+ if(flagRotacao || flagHall) buttonRotacao();
+ else buttonMenu();
  }
 }
 

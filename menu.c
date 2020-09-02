@@ -15,16 +15,18 @@
 
 bit flagConfirma,
     flagVoltar,
-    flagHall;
+    flagHall,
+    flagRotacao;
     
 unsigned short var_menu,
                pos_menu,
-               max_menu,
-               min_menu,
                dentes,
                espacos,
                vetor_menu[5];
-    
+
+unsigned max_menu,
+         min_menu;
+
 //----------------------------------------------------------------------------
 // --- FUNÇÃO DE CONTROLE DE NIVEL E SUBNIVEL DE MENUS ---
 
@@ -75,6 +77,8 @@ void logicaFonica()
 {
   while(flagVoltar != 1)
   {
+    
+    var_menu = 60;
     while(flagConfirma != 1)
     {
       escolhaDentes(var_menu);
@@ -91,22 +95,16 @@ void logicaFonica()
     espacos = var_menu;
     var_menu = 0;
     
+    flagRotacao = 1;
     ligarTMR1();
     
     while(flagConfirma != 1)
     {
       sinalFonica();
     }
-    flagConfirma = 0;
-    var_menu = controle_menu(var_menu);
     
-    if(flagVoltar != 1)
-    {
-      /*switch(vetor_menu[pos_menu-1])
-      {
-        case 1: logicaMenu1_1();break;
-      }*/
-    }
+    flagRotacao = 0;
+    flagConfirma = 0;
     desligaTMR1();
   }
   flagVoltar = 0;

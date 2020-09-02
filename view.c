@@ -13,13 +13,14 @@
 //-----------------------------------------------------------------------------
 // ---- DECLARANDO VARIÁVEIS UTILIZADAS ----
 
-char txt[7];
+char txt[7],
+     txt2[17];
 
 char opcoesSinal[2] [16] = {"SINAL INDUTIVO", "SINAL HALL"};
 
-unsigned contT;
+unsigned contT = 60055;
 
-float valor_tmr1;
+unsigned short valor_tmr1;
 
 //----------------------------------------------------------------------------
 // --- DECLARAÇAO DAS FUNÇOES DE IMPRESSAO NO LCD
@@ -157,7 +158,6 @@ void escolhaEspacos(unsigned short var_menu)
 
 void sinalFonica()
 {
-
   limpaLcd();
 
   Lcd_Chr(1,1,'S');
@@ -174,20 +174,19 @@ void sinalFonica()
   Lcd_Chr_Cp('A');
   Lcd_Chr_Cp(' ');
   Lcd_Chr_Cp(':');
+  
+  Lcd_Chr(2,16,'%');
 
   ByteToStr(dentes,txt);
   Lcd_Out(2,1,Ltrim(txt));
   
-  Lcd_Chr(2,4,'-');
+  Lcd_Chr(2,3,'-');
   
   ByteToStr(espacos,txt);
-  Lcd_Out(2,6,Ltrim(txt));
-  
-  Lcd_Chr(2,16,'%');
-  
-  valor_tmr1 = (1/(2*((65535 - contT) * 1 * 2E-7)));
-  FloatToStr_FixLen(valor_tmr1,txt,5);
-  Lcd_Out(2,11,Ltrim(txt));
+  Lcd_Out(2,4,Ltrim(txt));
+
+  ByteToStr(valor_tmr1,txt2);
+  Lcd_Out(2,13,Ltrim(txt2));
   
 }
 
@@ -212,8 +211,11 @@ void sinalHall()
   Lcd_Chr_Cp('L');
   Lcd_Chr_Cp(' ');
   Lcd_Chr_Cp(':');
+  
+  Lcd_Chr(2,16,'%');
+  
+  ByteToStr(valor_tmr1,txt2);
+  Lcd_Out(2,13,Ltrim(txt2));
 }
 
 //-----------------------------------------------------------------------------
-
-

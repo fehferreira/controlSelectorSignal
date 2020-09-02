@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
-#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
-#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
+#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/menu.c"
+#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
+#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
 extern sfr sbit voltar;
 extern sfr sbit esquerda;
 extern sfr sbit direita;
@@ -25,6 +25,7 @@ void logicaMenuPrincipal();
 void logicaFonica();
 void logicaHall();
 void buttonMenu();
+void buttonRotacao();
 
 
 
@@ -32,22 +33,22 @@ void buttonMenu();
 extern bit limpa_lcd,
  flagVoltar,
  flagConfirma,
- flagHall;
+ flagHall,
+ flagRotacao;
 
 extern unsigned short var_menu,
  pos_menu,
- max_menu,
- min_menu,
  dentes,
  espacos,
+ valor_tmr1,
  vetor_menu[5];
 
 extern unsigned int counter_rotacao,
+ max_menu,
+ min_menu,
  contT;
-
-extern float valor_tmr1;
-#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
-#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
+#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 sbit LCD_RS at LATD2_bit;
 sbit LCD_EN at LATD3_bit;
 sbit LCD_D4 at LATD4_bit;
@@ -61,7 +62,7 @@ sbit LCD_D4_Direction at TRISD4_bit;
 sbit LCD_D5_Direction at TRISD5_bit;
 sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
-#line 39 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 39 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 void interruptTMR1();
 void configInterruptTMR1();
 void ligarTMR1();
@@ -72,18 +73,20 @@ void interruptTMR0();
 void configInterruptTMR0();
 void ligarTMR0();
 void desligaTMR0();
-#line 16 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
+#line 16 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/menu.c"
 bit flagConfirma,
  flagVoltar,
- flagHall;
+ flagHall,
+ flagRotacao;
 
 unsigned short var_menu,
  pos_menu,
- max_menu,
- min_menu,
  dentes,
  espacos,
  vetor_menu[5];
+
+unsigned max_menu,
+ min_menu;
 
 
 
@@ -135,6 +138,8 @@ void logicaFonica()
 {
  while(flagVoltar != 1)
  {
+
+ var_menu = 60;
  while(flagConfirma != 1)
  {
  escolhaDentes(var_menu);
@@ -151,19 +156,16 @@ void logicaFonica()
  espacos = var_menu;
  var_menu = 0;
 
+ flagRotacao = 1;
  ligarTMR1();
 
  while(flagConfirma != 1)
  {
  sinalFonica();
  }
- flagConfirma = 0;
- var_menu = controle_menu(var_menu);
 
- if(flagVoltar != 1)
- {
-#line 109 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
- }
+ flagRotacao = 0;
+ flagConfirma = 0;
  desligaTMR1();
  }
  flagVoltar = 0;

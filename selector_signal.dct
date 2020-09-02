@@ -152,6 +152,7 @@ btsee_bit
 btsef
 btsef_bit
 buttonmenu
+buttonrotacao
 byte2double
 bytetohex
 bytetostr
@@ -254,7 +255,6 @@ configinterrupttmr1
 contador_rotacao
 controle_menu
 contt
-counter_rotacao
 crc16ee
 crc16ee_bit
 crc16ef
@@ -479,6 +479,7 @@ flagb3
 flagb4
 flagconfirma
 flaghall
+flagrotacao
 flagvoltar
 floattostr
 floattostr_fixlen
@@ -1503,6 +1504,7 @@ txip_bit
 txreg
 txsta
 txt
+txt2
 ua
 ua_bit
 uaddr

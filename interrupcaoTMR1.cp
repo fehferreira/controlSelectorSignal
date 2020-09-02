@@ -1,6 +1,6 @@
-#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR1.c"
-#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
-#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 1 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR1.c"
+#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
+#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 sbit LCD_RS at LATD2_bit;
 sbit LCD_EN at LATD3_bit;
 sbit LCD_D4 at LATD4_bit;
@@ -14,7 +14,7 @@ sbit LCD_D4_Direction at TRISD4_bit;
 sbit LCD_D5_Direction at TRISD5_bit;
 sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
-#line 39 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 39 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/header.h"
 void interruptTMR1();
 void configInterruptTMR1();
 void ligarTMR1();
@@ -25,8 +25,8 @@ void interruptTMR0();
 void configInterruptTMR0();
 void ligarTMR0();
 void desligaTMR0();
-#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
-#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
+#line 1 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
+#line 11 "c:/users/felipe - oficina/documents/programação/pic/alternador de sinais/menu.h"
 extern sfr sbit voltar;
 extern sfr sbit esquerda;
 extern sfr sbit direita;
@@ -51,6 +51,7 @@ void logicaMenuPrincipal();
 void logicaFonica();
 void logicaHall();
 void buttonMenu();
+void buttonRotacao();
 
 
 
@@ -58,21 +59,21 @@ void buttonMenu();
 extern bit limpa_lcd,
  flagVoltar,
  flagConfirma,
- flagHall;
+ flagHall,
+ flagRotacao;
 
 extern unsigned short var_menu,
  pos_menu,
- max_menu,
- min_menu,
  dentes,
  espacos,
+ valor_tmr1,
  vetor_menu[5];
 
 extern unsigned int counter_rotacao,
+ max_menu,
+ min_menu,
  contT;
-
-extern float valor_tmr1;
-#line 16 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR1.c"
+#line 16 "C:/Users/Felipe - Oficina/Documents/Programação/PIC/alternador de sinais/interrupcaoTMR1.c"
 unsigned short contador_rotacao;
 
 
@@ -85,8 +86,8 @@ void configInterruptTMR1()
 
 
 
- TMR1L = 0x00;
- TMR1H = 0x00;
+ TMR1L = 0x97;
+ TMR1H = 0xEA;
  TMR1IE_bit = 0x01;
  TMR1IP_bit = 0x01;
 }
@@ -102,17 +103,9 @@ void interruptTMR1()
  {
  contador_rotacao ++;
 
- if(contador_rotacao < ((dentes*2) - (espacos*2)))  LATD0_bit  = ~ LATD0_bit ;
- if(contador_rotacao >= ((dentes*2) - (espacos*2)))
- {
-  LATB3_bit  = ~ LATB3_bit ;
-  LATD0_bit  = 0x00;
- }
- if(contador_rotacao == (dentes*2))
- {
- contador_rotacao = 0x00;
-  LATB3_bit  = 0x00;
- }
+ if(contador_rotacao < ((dentes*2)-(espacos*2)))  LATD0_bit  = ~ LATD0_bit ;
+ if(contador_rotacao >= ((dentes*2)-(espacos*2)))  LATD0_bit  = 0x00;
+ if(contador_rotacao == (dentes*2)) contador_rotacao = 0x00;
 
  }else
  {
@@ -122,7 +115,7 @@ void interruptTMR1()
  TMR1L = contT << 8;
  TMR1H = contT >> 8;
 
- valor_tmr1 = contT;
+ valor_tmr1 = (0.018 * (contT - 60000)) ;
 
  TMR1IF_bit = 0x00;
 
@@ -141,6 +134,7 @@ void ligarTMR1()
 void desligaTMR1()
 {
   LATD0_bit  = 0;
+  LATD1_bit  = 0;
   LATB3_bit  = 0;
  TMR1ON_bit = 0;
 }

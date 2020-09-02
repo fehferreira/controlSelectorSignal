@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=interrupcaoTMR1.c
+Value=menu.h
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -68,4 +68,4 @@ Count=3
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
-Count=2
+Count=3

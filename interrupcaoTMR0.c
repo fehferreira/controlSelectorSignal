@@ -22,7 +22,8 @@ void interruptTMR0()
     TMR0H = 0xB1;                          //Reinicializa TMR0H
     TMR0L = 0xE0;                          //Reinicializa TMR0L
 
-    buttonMenu();
+    if(flagRotacao || flagHall) buttonRotacao();
+    else                        buttonMenu();
   }
 }
 

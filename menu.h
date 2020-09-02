@@ -32,6 +32,7 @@ void logicaMenuPrincipal();
 void logicaFonica();
 void logicaHall();
 void buttonMenu();
+void buttonRotacao();
 
 //-----------------------------------------------------------------------------
 // ---- DECLARANDO VARIAVEIS GLOBAIS DO PROJETO ----
@@ -39,17 +40,17 @@ void buttonMenu();
 extern bit limpa_lcd,
            flagVoltar,
            flagConfirma,
-           flagHall;
+           flagHall,
+           flagRotacao;
 
 extern unsigned short var_menu,
                       pos_menu,
-                      max_menu,
-                      min_menu,
                       dentes,
                       espacos,
+                      valor_tmr1,
                       vetor_menu[5];
 
 extern unsigned int counter_rotacao,
+                    max_menu,
+                    min_menu,
                     contT;
-                    
-extern float valor_tmr1;
