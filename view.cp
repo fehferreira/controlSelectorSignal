@@ -15,7 +15,7 @@ void inicioLcd();
 void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
-void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalFonica();
 void sinalHall();
 
 
@@ -31,19 +31,29 @@ void buttonMenu();
 
 extern bit limpa_lcd,
  flagVoltar,
- flagConfirma;
+ flagConfirma,
+ flagHall;
 
 extern unsigned short var_menu,
  pos_menu,
  max_menu,
  min_menu,
+ dentes,
+ espacos,
  vetor_menu[5];
 
-extern unsigned int counter_rotacao;
+extern unsigned int counter_rotacao,
+ contT;
+
+extern float valor_tmr1;
 #line 16 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/view.c"
 char txt[7];
 
 char opcoesSinal[2] [16] = {"SINAL INDUTIVO", "SINAL HALL"};
+
+unsigned contT;
+
+float valor_tmr1;
 
 
 
@@ -179,8 +189,9 @@ void escolhaEspacos(unsigned short var_menu)
 
 
 
-void sinalFonica(unsigned short dentes,unsigned short espacos)
+void sinalFonica()
 {
+
  limpaLcd();
 
  Lcd_Chr(1,1,'S');
@@ -205,6 +216,13 @@ void sinalFonica(unsigned short dentes,unsigned short espacos)
 
  ByteToStr(espacos,txt);
  Lcd_Out(2,6,Ltrim(txt));
+
+ Lcd_Chr(2,16,'%');
+
+ valor_tmr1 = (1/(2*((65535 - contT) * 1 * 2E-7)));
+ FloatToStr_FixLen(valor_tmr1,txt,5);
+ Lcd_Out(2,11,Ltrim(txt));
+
 }
 
 
@@ -212,6 +230,9 @@ void sinalFonica(unsigned short dentes,unsigned short espacos)
 void sinalHall()
 {
  limpaLcd();
+
+ dentes = 2;
+ espacos = 1;
 
  Lcd_Chr(1,1,'S');
  Lcd_Chr_Cp('I');

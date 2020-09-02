@@ -42,3 +42,23 @@ _configInterruptTMR0:
 L_end_configInterruptTMR0:
 	RETURN      0
 ; end of _configInterruptTMR0
+
+_ligarTMR0:
+
+;interrupcaoTMR0.c,46 :: 		void ligarTMR0()
+;interrupcaoTMR0.c,48 :: 		TMR0ON_bit = 1;
+	BSF         TMR0ON_bit+0, BitPos(TMR0ON_bit+0) 
+;interrupcaoTMR0.c,49 :: 		}
+L_end_ligarTMR0:
+	RETURN      0
+; end of _ligarTMR0
+
+_desligaTMR0:
+
+;interrupcaoTMR0.c,53 :: 		void desligaTMR0()
+;interrupcaoTMR0.c,55 :: 		TMR0ON_bit = 0;
+	BCF         TMR0ON_bit+0, BitPos(TMR0ON_bit+0) 
+;interrupcaoTMR0.c,56 :: 		}
+L_end_desligaTMR0:
+	RETURN      0
+; end of _desligaTMR0

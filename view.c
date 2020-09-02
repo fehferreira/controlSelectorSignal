@@ -1,7 +1,7 @@
 /*
   MENUS DESENVOLVIDOS PARA O PROJETO COM VETORES
   DEVIDCE: PIC18F4550        SIMULAÇAO:PROTEUS
-  AUTOR: FELIPE FERREIRA     DATA: JULHO 2020
+  AUTOR: FELIPE FERREIRA     DATA: SETEMBRO 2020
   CLOCK: 20MHz                CICLO DE MAQU: 200nS
 
 */
@@ -16,6 +16,10 @@
 char txt[7];
 
 char opcoesSinal[2] [16] = {"SINAL INDUTIVO", "SINAL HALL"};
+
+unsigned contT;
+
+float valor_tmr1;
 
 //----------------------------------------------------------------------------
 // --- DECLARAÇAO DAS FUNÇOES DE IMPRESSAO NO LCD
@@ -151,8 +155,9 @@ void escolhaEspacos(unsigned short var_menu)
 
 //-----------------------------------------------------------------------------
 
-void sinalFonica(unsigned short dentes,unsigned short espacos)
+void sinalFonica()
 {
+
   limpaLcd();
 
   Lcd_Chr(1,1,'S');
@@ -177,6 +182,13 @@ void sinalFonica(unsigned short dentes,unsigned short espacos)
   
   ByteToStr(espacos,txt);
   Lcd_Out(2,6,Ltrim(txt));
+  
+  Lcd_Chr(2,16,'%');
+  
+  valor_tmr1 = (1/(2*((65535 - contT) * 1 * 2E-7)));
+  FloatToStr_FixLen(valor_tmr1,txt,5);
+  Lcd_Out(2,11,Ltrim(txt));
+  
 }
 
 //-----------------------------------------------------------------------------
@@ -184,6 +196,9 @@ void sinalFonica(unsigned short dentes,unsigned short espacos)
 void sinalHall()
 {
   limpaLcd();
+
+  dentes = 2;
+  espacos = 1;
 
   Lcd_Chr(1,1,'S');
   Lcd_Chr_Cp('I');

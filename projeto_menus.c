@@ -1,7 +1,7 @@
 /*
   PROJETOS SELETOR DE SINAIS FONICA E HALL
   DEVIDCE: PIC18F4550        SIMULAÇAO:PROTEUS
-  AUTOR: FELIPE FERREIRA     DATA: JULHO 2020
+  AUTOR: FELIPE FERREIRA     DATA: SETEMBRO 2020
   CLOCK: 20MHz                CICLO DE MAQU: 200nS
 
    
@@ -34,12 +34,6 @@ sbit esquerda at   RB5_bit;
 sbit direita  at   RB6_bit;
 sbit ok       at   RB7_bit;
 
-//---------------------------------------------------------------------------
-// --- CRIAÇAO DE VARIAVEIS GLOBAIS
-
-unsigned int contador_rotacao;               //Valor recebido pelo modulo ADC
-
-
 //-----------------------------------------------------------------------------
 // --- CRIANDO PROTÓTIPOS DAS FUNÇOES ----
 
@@ -59,6 +53,10 @@ void main()
    // --- CONFIGURANDO TIMER0 (TESTE DE BOTOES) ---
    
    configInterruptTMR0();
+   
+   // --- CONFIGURANDO TIMER1 (SINAL DE ROTACAO) ---
+   
+   configInterruptTMR1();
 
    // --- CONFIGURANDO AS ENTRADAS ---
    
@@ -94,3 +92,12 @@ void interrupt_low()                           //Funcao de interrupcao
 }
 
 //----------------------------------------------------------------------------
+
+void interrupt()
+{
+  interruptTMR1();
+}
+
+//----------------------------------------------------------------------------
+
+

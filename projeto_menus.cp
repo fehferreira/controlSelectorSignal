@@ -14,18 +14,17 @@ sbit LCD_D4_Direction at TRISD4_bit;
 sbit LCD_D5_Direction at TRISD5_bit;
 sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
-
-
-
-
-
-
-
-
+#line 39 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+void interruptTMR1();
+void configInterruptTMR1();
+void ligarTMR1();
+void desligaTMR1();
 
 
 void interruptTMR0();
 void configInterruptTMR0();
+void ligarTMR0();
+void desligaTMR0();
 #line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
 #line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/menu.h"
 extern sfr sbit voltar;
@@ -42,7 +41,7 @@ void inicioLcd();
 void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
-void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalFonica();
 void sinalHall();
 
 
@@ -58,26 +57,26 @@ void buttonMenu();
 
 extern bit limpa_lcd,
  flagVoltar,
- flagConfirma;
+ flagConfirma,
+ flagHall;
 
 extern unsigned short var_menu,
  pos_menu,
  max_menu,
  min_menu,
+ dentes,
+ espacos,
  vetor_menu[5];
 
-extern unsigned int counter_rotacao;
+extern unsigned int counter_rotacao,
+ contT;
+
+extern float valor_tmr1;
 #line 32 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/projeto_menus.c"
 sbit voltar at RB4_bit;
 sbit esquerda at RB5_bit;
 sbit direita at RB6_bit;
 sbit ok at RB7_bit;
-
-
-
-
-unsigned int contador_rotacao;
-
 
 
 
@@ -98,6 +97,10 @@ void main()
 
 
  configInterruptTMR0();
+
+
+
+ configInterruptTMR1();
 
 
 
@@ -130,4 +133,11 @@ void main()
 void interrupt_low()
 {
  interruptTMR0();
+}
+
+
+
+void interrupt()
+{
+ interruptTMR1();
 }

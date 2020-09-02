@@ -1,5 +1,6 @@
 main
 	configInterruptTMR0
+	configInterruptTMR1
 	Lcd_Init
 		Delay_5500us
 		Delay_1us
@@ -113,6 +114,7 @@ main
 							Delay_1us
 							Delay_5500us
 							Delay_50us
+			ligarTMR1
 			sinalFonica
 				limpaLcd
 					Lcd_Cmd
@@ -142,8 +144,32 @@ main
 							Delay_1us
 							Delay_5500us
 							Delay_50us
+				word2double
+					NRM3232
+						RES032
+						SETFUN32
+						FIXSIGN32
+				Mul_32x32_FP
+					RES032
+					SETFOV32
+					SETFUN32
+				Div_32x32_FP
+					SETFDZ32
+					RES032
+					SETFOV32
+					SETFUN32
+				FloatToStr_FixLen
+					strcpy
+					Compare_Double
+					Mul_32x32_FP
+						RES032
+						SETFOV32
+						SETFUN32
+					Div_8X8_S
 			controle_menu
+			desligaTMR1
 		logicaHall
+			ligarTMR1
 			sinalHall
 				limpaLcd
 					Lcd_Cmd
@@ -160,6 +186,14 @@ main
 						Delay_1us
 						Delay_5500us
 						Delay_50us
+			desligaTMR1
 interrupt_low
 	interruptTMR0
 		buttonMenu
+interrupt
+	interruptTMR1
+		word2double
+			NRM3232
+				RES032
+				SETFUN32
+				FIXSIGN32

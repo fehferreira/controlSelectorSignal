@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=menu.c
+Value=interrupcaoTMR1.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -21,17 +21,23 @@ File1=menu.c
 File2=projeto_menus.c
 File3=view.c
 File4=interrupcaoTMR0.c
-Count=5
+File5=interrupcaoTMR1.c
+Count=6
 [BINARIES]
 Count=0
 [IMAGES]
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=menu.c
-File1=view.c
-File2=menu.h
-Count=3
+File0=view.c
+File1=menu.h
+File2=header.h
+File3=menu.c
+File4=button.c
+File5=interrupcaoTMR1.c
+File6=projeto_menus.c
+File7=interrupcaoTMR0.c
+Count=8
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -57,7 +63,7 @@ Count=4
 [EXPANDED_NODES]
 0=selector_signal.mcppi
 1=Sources
-7=Header Files
+8=Header Files
 Count=3
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries

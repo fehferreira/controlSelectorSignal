@@ -22,6 +22,11 @@ sbit LCD_D5_Direction at TRISD5_bit;
 sbit LCD_D6_Direction at TRISD6_bit;
 sbit LCD_D7_Direction at TRISD7_bit;
 
+
+#define rotacao  LATD0_bit
+#define rotacao2 LATD1_bit
+#define fase     LATB3_bit
+
 //-----------------------------------------------------------------------------
 // ---- DECLARANDO VARIAVEIS GLOBAIS DO PROJETO ----
 
@@ -30,10 +35,17 @@ sbit LCD_D7_Direction at TRISD7_bit;
 //-----------------------------------------------------------------------------
 // ---- DECLARANDO FUNCOES PARA SEREM DESENVOLVIDAS ----
 
+// --- FUNCAO DE INTERRUPCAO TMR1 (SINAL DE ROTACAO) ---
+void interruptTMR1();
+void configInterruptTMR1();
+void ligarTMR1();
+void desligaTMR1();
+
 // --- FUNCAO DE INTERRUPCAO TMR0 (TESTE BOTAO) ---
 void interruptTMR0();
 void configInterruptTMR0();
-
+void ligarTMR0();
+void desligaTMR0();
 
 
 

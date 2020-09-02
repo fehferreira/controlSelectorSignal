@@ -15,7 +15,7 @@ void inicioLcd();
 void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
-void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalFonica();
 void sinalHall();
 
 
@@ -31,15 +31,21 @@ void buttonMenu();
 
 extern bit limpa_lcd,
  flagVoltar,
- flagConfirma;
+ flagConfirma,
+ flagHall;
 
 extern unsigned short var_menu,
  pos_menu,
  max_menu,
  min_menu,
+ dentes,
+ espacos,
  vetor_menu[5];
 
-extern unsigned int counter_rotacao;
+extern unsigned int counter_rotacao,
+ contT;
+
+extern float valor_tmr1;
 #line 15 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/button.c"
 bit flagb1,
  flagb2,

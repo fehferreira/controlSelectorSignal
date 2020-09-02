@@ -1,24 +1,28 @@
 /*
   FUNÇÕES DE LÓGICA PARA OS MENUS - "CONTROLER"
   DEVIDCE: PIC18F4550        SIMULAÇAO:PROTEUS
-  AUTOR: FELIPE FERREIRA     DATA: JULHO 2020
+  AUTOR: FELIPE FERREIRA     DATA: SETEMBRO 2020
   CLOCK: 20MHz                CICLO DE MAQU: 200nS
 */
 //-----------------------------------------------------------------------------
 // ---- IMPORTANDO O CABEÇALHO DO PROJETO ----
 
 #include "menu.h"
+#include "header.h"
 
 //----------------------------------------------------------------------------
 // ---- DECLARAÇÃO DE VARIAVEIS -----
 
 bit flagConfirma,
-    flagVoltar;
+    flagVoltar,
+    flagHall;
     
 unsigned short var_menu,
                pos_menu,
                max_menu,
                min_menu,
+               dentes,
+               espacos,
                vetor_menu[5];
     
 //----------------------------------------------------------------------------
@@ -69,8 +73,6 @@ void logicaMenuPrincipal()
 
 void logicaFonica()
 {
-  unsigned short dentes, espacos;
-
   while(flagVoltar != 1)
   {
     while(flagConfirma != 1)
@@ -89,9 +91,11 @@ void logicaFonica()
     espacos = var_menu;
     var_menu = 0;
     
+    ligarTMR1();
+    
     while(flagConfirma != 1)
     {
-      sinalFonica(dentes,espacos);
+      sinalFonica();
     }
     flagConfirma = 0;
     var_menu = controle_menu(var_menu);
@@ -103,6 +107,7 @@ void logicaFonica()
         case 1: logicaMenu1_1();break;
       }*/
     }
+    desligaTMR1();
   }
   flagVoltar = 0;
 }
@@ -113,17 +118,19 @@ void logicaHall()
 {
   while(flagVoltar != 1)
   {
-  
+    ligarTMR1();
+    flagHall = 1;
+
     while(flagConfirma != 1)
     {
       sinalHall();
     }
+
+    flagHall = 0;
     flagConfirma = 0;
+    desligaTMR1();
   }
   flagVoltar = 0;
 }
 
 //----------------------------------------------------------------------------
-
-
-

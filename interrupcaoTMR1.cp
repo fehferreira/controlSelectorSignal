@@ -1,4 +1,4 @@
-#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR0.c"
+#line 1 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR1.c"
 #line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
 #line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
 sbit LCD_RS at LATD2_bit;
@@ -72,44 +72,75 @@ extern unsigned int counter_rotacao,
  contT;
 
 extern float valor_tmr1;
-#line 17 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR0.c"
-void interruptTMR0()
-{
- if(TMR0IF_bit)
- {
- TMR0IF_bit = 0x00;
- TMR0H = 0xB1;
- TMR0L = 0xE0;
+#line 16 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/interrupcaoTMR1.c"
+unsigned short contador_rotacao;
 
- buttonMenu();
+
+
+
+void configInterruptTMR1()
+{
+ T1CON = 0b01000000;
+
+
+
+
+ TMR1L = 0x00;
+ TMR1H = 0x00;
+ TMR1IE_bit = 0x01;
+ TMR1IP_bit = 0x01;
+}
+
+
+
+void interruptTMR1()
+{
+ if(TMR1IF_bit)
+ {
+
+ if(!flagHall)
+ {
+ contador_rotacao ++;
+
+ if(contador_rotacao < ((dentes*2) - (espacos*2)))  LATD0_bit  = ~ LATD0_bit ;
+ if(contador_rotacao >= ((dentes*2) - (espacos*2)))
+ {
+  LATB3_bit  = ~ LATB3_bit ;
+  LATD0_bit  = 0x00;
+ }
+ if(contador_rotacao == (dentes*2))
+ {
+ contador_rotacao = 0x00;
+  LATB3_bit  = 0x00;
+ }
+
+ }else
+ {
+  LATD1_bit  = ~ LATD1_bit ;
+ }
+
+ TMR1L = contT << 8;
+ TMR1H = contT >> 8;
+
+ valor_tmr1 = contT;
+
+ TMR1IF_bit = 0x00;
+
  }
 }
 
 
 
-void configInterruptTMR0()
+void ligarTMR1()
 {
- T0CON = 0b10001000;
-
-
-
-
- TMR0H = 0xB1;
- TMR0L = 0xE0;
- TMR0IE_bit = 0x01;
- TMR0IP_bit = 0x00;
+ TMR1ON_bit = 1;
 }
 
 
 
-void ligarTMR0()
+void desligaTMR1()
 {
- TMR0ON_bit = 1;
-}
-
-
-
-void desligaTMR0()
-{
- TMR0ON_bit = 0;
+  LATD0_bit  = 0;
+  LATB3_bit  = 0;
+ TMR1ON_bit = 0;
 }

@@ -15,7 +15,7 @@ void inicioLcd();
 void menuPrincipal(unsigned short var_menu);
 void escolhaDentes(unsigned short var_menu);
 void escolhaEspacos(unsigned short var_menu);
-void sinalFonica(unsigned short dentes,unsigned short espacos);
+void sinalFonica();
 void sinalHall();
 
 
@@ -31,23 +31,58 @@ void buttonMenu();
 
 extern bit limpa_lcd,
  flagVoltar,
- flagConfirma;
+ flagConfirma,
+ flagHall;
 
 extern unsigned short var_menu,
  pos_menu,
  max_menu,
  min_menu,
+ dentes,
+ espacos,
  vetor_menu[5];
 
-extern unsigned int counter_rotacao;
-#line 15 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
+extern unsigned int counter_rotacao,
+ contT;
+
+extern float valor_tmr1;
+#line 1 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+#line 11 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+sbit LCD_RS at LATD2_bit;
+sbit LCD_EN at LATD3_bit;
+sbit LCD_D4 at LATD4_bit;
+sbit LCD_D5 at LATD5_bit;
+sbit LCD_D6 at LATD6_bit;
+sbit LCD_D7 at LATD7_bit;
+
+sbit LCD_RS_Direction at TRISD2_bit;
+sbit LCD_EN_Direction at TRISD3_bit;
+sbit LCD_D4_Direction at TRISD4_bit;
+sbit LCD_D5_Direction at TRISD5_bit;
+sbit LCD_D6_Direction at TRISD6_bit;
+sbit LCD_D7_Direction at TRISD7_bit;
+#line 39 "c:/users/felipe-home/documents/programas/pic/signal-chooser/header.h"
+void interruptTMR1();
+void configInterruptTMR1();
+void ligarTMR1();
+void desligaTMR1();
+
+
+void interruptTMR0();
+void configInterruptTMR0();
+void ligarTMR0();
+void desligaTMR0();
+#line 16 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
 bit flagConfirma,
- flagVoltar;
+ flagVoltar,
+ flagHall;
 
 unsigned short var_menu,
  pos_menu,
  max_menu,
  min_menu,
+ dentes,
+ espacos,
  vetor_menu[5];
 
 
@@ -98,8 +133,6 @@ void logicaMenuPrincipal()
 
 void logicaFonica()
 {
- unsigned short dentes, espacos;
-
  while(flagVoltar != 1)
  {
  while(flagConfirma != 1)
@@ -118,17 +151,20 @@ void logicaFonica()
  espacos = var_menu;
  var_menu = 0;
 
+ ligarTMR1();
+
  while(flagConfirma != 1)
  {
- sinalFonica(dentes,espacos);
+ sinalFonica();
  }
  flagConfirma = 0;
  var_menu = controle_menu(var_menu);
 
  if(flagVoltar != 1)
  {
-#line 105 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
+#line 109 "C:/Users/Felipe-HOME/Documents/programas/PIC/signal-chooser/menu.c"
  }
+ desligaTMR1();
  }
  flagVoltar = 0;
 }
@@ -139,12 +175,17 @@ void logicaHall()
 {
  while(flagVoltar != 1)
  {
+ ligarTMR1();
+ flagHall = 1;
 
  while(flagConfirma != 1)
  {
  sinalHall();
  }
+
+ flagHall = 0;
  flagConfirma = 0;
+ desligaTMR1();
  }
  flagVoltar = 0;
 }
